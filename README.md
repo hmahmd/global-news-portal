@@ -53,6 +53,6 @@ I'd love to connect with you! If you have any feedback or want to collaborate, r
 
 This project is open-source and available under the MIT License.
 
-Crafted with passion by [Your Name] ```
+Crafted with passion by [Hafiz Muhammad Ahmed] ```
 
 ---
