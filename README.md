@@ -4,7 +4,7 @@
 
 ## 🚀 Live Demo
 
-_Check out the live application here:_ [👉 View Live Project](https://YOUR-LIVE-LINK.github.io) ---
+_Check out the live application here:_ [👉 View Live Project](https://global-news-portal.vercel.app/) ---
 
 ## 📁 Repository Link
 
