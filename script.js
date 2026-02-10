@@ -10,24 +10,25 @@ const startApp = () => {
     infoMsg.innerHTML = '<p class="error">Please type something!</p>';
     setTimeout(() => {
       infoMsg.innerHTML = "";
-    }, 3000); // 3 sec baad gayab
+    }, 3000);
     return;
   }
 
   infoMsg.innerHTML = '<p class="loading">Finding news...</p>';
   newsList.innerHTML = "";
 
-  let myKey = "af17021ce1cb4e90b727ec0ce87b2f50";
-  let apiURL = `https://newsapi.org/v2/everything?q=${topic}&from=2026-02-06&pageSize=10&apiKey=${myKey}`;
+  // Sirf yeh line change hui - API ki jagah JSON file
+  let apiURL = "./news.json";
 
-  // STEP 3: API se data mangwao
   fetch(apiURL)
     .then((res) => res.json())
     .then((data) => {
-      if (data.articles.length === 0) {
+      if (!data.articles || data.articles.length === 0) {
         infoMsg.innerHTML = "<p>No news found for this topic.</p>";
         return;
       }
+
+      infoMsg.innerHTML = "";
 
       data.articles.forEach((item) => {
         let photo = item.urlToImage
@@ -35,16 +36,21 @@ const startApp = () => {
           : "https://via.placeholder.com/300";
 
         newsList.innerHTML += `
-                    <div class="card">
-                        <img src="${photo}" class="card-img">
-                        <div class="card-info">
-                            <h2 class="card-title">${item.title}</h2>
-                            <p>${item.description || "No description."}</p>
-                            <a href="${item.url}" target="_blank" class="open-link">Read More →</a>
-                        </div>
-                    </div>
-                `;
+          <div class="card">
+            <img src="${photo}" class="card-img">
+            <div class="card-info">
+              <h2 class="card-title">${item.title}</h2>
+              <p>${item.description || "No description."}</p>
+              <a href="${item.url}" target="_blank" class="open-link">Read More →</a>
+            </div>
+          </div>
+        `;
       });
+    })
+    .catch((err) => {
+      infoMsg.innerHTML =
+        '<p class="error">Something went wrong. Please try again.</p>';
+      console.error(err);
     });
 };
 
